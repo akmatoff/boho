@@ -1,0 +1,81 @@
+---
+import { CategoryType, type Category } from "../../types";
+import DefaultCategory from "./Default/DefaultCategory.tsx";
+import SubCategory from "./SubCategory.astro";
+import TextBased from "./TextBased/TextBased.tsx";
+import TwoInARow from "./TwoInARow/TwoInARow";
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+
+const { menu } = Astro.params;
+
+const searchParams = Astro.url.searchParams;
+
+const isBar = menu === "bar";
+
+const hasSubCategories = category.subcategories.length > 0;
+---
+
+<section class="p-4 md:pt-24 snap-start" id={`category-${category.id}`}>
+  <header class="flex items-center justify-between h-12">
+    <div class="h-full flex items-center space-x-4">
+      <div
+        class={`w-[4px] h-[24px] md:h-[48px] rounded-lg bg-category ${isBar && "bg-categorySecondary"}`}
+      >
+      </div>
+      <h1 class="text-[20px]/[20px] md:text-[45px]/[40px] font-semibold">
+        {category.name}
+      </h1>
+    </div>
+
+    <p class="text-[9px] md:text-[14px]">{category.description}</p>
+  </header>
+
+  <div class="py-2 md:py-8 space-y-8">
+    {
+      category.image && (
+        <img src={category.image} alt={category.slug} class="w-full" />
+      )
+    }
+
+    {
+      hasSubCategories &&
+        category.subcategories.map((sc) => <SubCategory category={sc} />)
+    }
+
+    {
+      category.category_type === CategoryType.DEFAULT && (
+        <DefaultCategory
+          category={category}
+          lang={searchParams.get("lang") || "ru"}
+          client:visible
+        />
+      )
+    }
+    {
+      category.category_type === CategoryType.TWO_IN_A_ROW && (
+        <TwoInARow
+          category={category}
+          menu={menu}
+          lang={searchParams.get("lang") || "ru"}
+          client:visible
+        />
+      )
+    }
+
+    {
+      category.category_type === CategoryType.TEXT_BASED && (
+        <TextBased
+          category={category}
+          menu={menu}
+          lang={searchParams.get("lang") || "ru"}
+          client:visible
+        />
+      )
+    }
+  </div>
+</section>

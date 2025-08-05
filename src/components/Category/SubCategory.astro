@@ -1,0 +1,67 @@
+---
+import { CategoryType, type Category } from "../../types";
+import DefaultCategory from "./Default/DefaultCategory.tsx";
+import Sub from "./SubCategory.astro";
+import TextBased from "./TextBased/TextBased.tsx";
+import TwoInARow from "./TwoInARow/TwoInARow";
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+
+const searchParams = Astro.url.searchParams;
+
+const { menu } = Astro.params;
+
+const hasSubcategories = category.subcategories.length > 0;
+---
+
+<div class="space-y-16">
+  <h2 class="text-[16px] md:text-[30px] font-semibold">{category.name}</h2>
+
+  {
+    hasSubcategories && (
+      <div class="space-y-16">
+        {category.subcategories.map((sc) => (
+          <Sub category={sc} />
+        ))}
+      </div>
+    )
+  }
+
+  {
+    category.category_type === CategoryType.DEFAULT && (
+      <DefaultCategory
+        category={category}
+        lang={searchParams.get("lang") || "ru"}
+        client:visible
+      />
+    )
+  }
+
+  {
+    category.category_type === CategoryType.TWO_IN_A_ROW && (
+      <div class="mt-32">
+        <TwoInARow
+          category={category}
+          menu={menu}
+          lang={searchParams.get("lang") || "ru"}
+          client:visible
+        />
+      </div>
+    )
+  }
+
+  {
+    category.category_type === CategoryType.TEXT_BASED && (
+      <TextBased
+        category={category}
+        lang={searchParams.get("lang") || "ru"}
+        menu={menu}
+        client:visible
+      />
+    )
+  }
+</div>

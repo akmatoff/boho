@@ -1,0 +1,100 @@
+---
+import CategoryCarousel from "./Category/CategoryCarousel.astro";
+import MenuButton from "./MenuButton.astro";
+import Image from "astro/components/Image.astro";
+import type { Category } from "../types";
+import classNames from "classnames";
+import CategoryButton from "./Category/CategoryButton.astro";
+import BurgerMenu from "./BurgerMenu";
+import Logo from "../../public/boho-logo.png";
+import LogoSecondary from "../../public/boho-logo-secondary.png";
+
+export const prerender = true;
+
+const { searchParams } = Astro.url;
+
+interface Props {
+  categories?: Category[];
+  menuOptions: Category[];
+  hideMenus?: boolean;
+  isLight?: boolean;
+}
+
+const { categories, menuOptions, hideMenus, isLight = false } = Astro.props;
+const { menu } = Astro.params;
+---
+
+<header class={isLight ? "bg-foreground" : "bg-primary"} id="header-section">
+  <div
+    class={`absolute z-20 top-4 right-4 md:top-8 md:right-8 space-x-4 ${isLight ? "text-primary" : "text-foreground"}`}
+  >
+    <a
+      href={`?lang=ru`}
+      class={`inline-block p-2 text-xs md:text-base rounded-lg ${isLight ? "border-primary" : "border-foreground"} ${searchParams.get("lang") === "ru" && "border"} ${searchParams.get("lang") === null && "border"}`}
+      >RU</a
+    >
+    <a
+      href={`?lang=ky`}
+      class={`inline-block p-2 text-xs md:text-base rounded-lg ${isLight ? "border-primary" : "border-foreground"} ${searchParams.get("lang") === "ky" && "border"}`}
+      >KY</a
+    >
+    <a
+      href={`?lang=en`}
+      class={`inline-block p-2 text-xs md:text-base rounded-lg ${isLight ? "border-primary" : "border-foreground"} ${searchParams.get("lang") === "en" && "border"}`}
+      >EN</a
+    >
+  </div>
+
+  <div
+    class={classNames(
+      "background bg-cover min-h-screen flex flex-col justify-center space-y-12 overflow-x-hidden"
+    )}
+  >
+    <div class="flex flex-col items-center justify-center space-y-20 h-full">
+      <div class="flex flex-col items-center space-y-10">
+        <Image
+          src={isLight ? LogoSecondary : Logo}
+          alt="logo"
+          class="scale-75"
+          fetchpriority="high"
+        />
+      </div>
+
+      {
+        !hideMenus && (
+          <div class="flex flex-col items-center space-y-4">
+            {menuOptions.map((option) => (
+              <MenuButton
+                isActive={option.slug === menu}
+                link={`/${option.slug}`}
+              >
+                {option.name}
+              </MenuButton>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <div class="flex lg:justify-center px-4 lg:px-0 w-full">
+      <div class="flex flex-col items-center p-4 w-full">
+        {
+          categories?.map((category) => (
+            <div class="break-inside-avoid mb-4">
+              <CategoryButton
+                link={`#category-${category.id}`}
+                className={`${isLight ? "text-primary" : "text-foreground"} text-[20px] lg:px-4 lg:py-1 lg:text-[32px] uppercase whitespace-break-spaces`}
+              >
+                {category.name}
+              </CategoryButton>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</header>
+
+<BurgerMenu menuOptions={menuOptions} client:only />
+
+{categories && <CategoryCarousel categories={categories} />}

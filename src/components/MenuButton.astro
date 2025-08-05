@@ -1,0 +1,19 @@
+---
+import type { ReactNode } from "react";
+
+interface Props {
+  isActive: boolean;
+  link: string;
+}
+
+const { link, isActive } = Astro.props;
+---
+
+<a
+  href={link}
+  class={`inline-block rounded-[20px] px-6 text-foreground text-[24px] md:text-[40px] uppercase cursor-pointer border-[3px] ${
+    isActive ? "font-extrabold" : "font-extralight"
+  }`}
+>
+  <slot />
+</a>

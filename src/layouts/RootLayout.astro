@@ -1,0 +1,184 @@
+---
+import { CategoryType, type Category } from "../types";
+import HeaderSection from "../components/HeaderSection.astro";
+
+const primary = "#C68440";
+const secondary = "#C68440";
+const background = "#F5F5F5";
+const foreground = "#ffffff";
+const category = "#FF6868";
+const muted = "#363434";
+const categorySecondary = "#3F9573";
+
+interface Props {
+  categories: Category[];
+  hideCategories?: boolean;
+  hideMenus?: boolean;
+  isLight?: boolean;
+}
+
+const { menu } = Astro.params;
+
+const { categories, hideCategories, hideMenus, isLight } = Astro.props;
+
+const menus = categories.filter(
+  (category) => category.category_type === CategoryType.MENU
+);
+
+const activeMenu =
+  categories.find((category) => category.slug === menu) || menus?.[0];
+---
+
+<style
+  is:global
+  define:vars={{
+    primary,
+    secondary,
+    category,
+    muted,
+    categorySecondary,
+    background,
+    foreground,
+  }}
+>
+  @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+  @tailwindcss base;
+  @tailwindcss components;
+  @tailwindcss utilities;
+
+  @font-face {
+    font-family: "Lato", sans-serif;
+  }
+
+  body {
+    font-family: "Lato", sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fff7ed;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f3c48a;
+    border-radius: 8px;
+  }
+
+  .scrollbar-hidden {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .background-wrapper {
+    background-image: url("/public/background-image.png");
+    background-size: 105%;
+    background-repeat: repeat-y;
+  }
+
+  .background {
+    background-image: url("/public/hero-background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .loader {
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    clip-path: inset(-45px);
+    box-shadow:
+      -60px 15px,
+      -60px 15px,
+      -60px 15px;
+    transform: translateY(-15px);
+    animation: l19 1s infinite linear;
+  }
+  @keyframes l19 {
+    16.67% {
+      box-shadow:
+        -60px 15px,
+        -60px 15px,
+        19px 15px;
+    }
+    33.33% {
+      box-shadow:
+        -60px 15px,
+        0px 15px,
+        19px 15px;
+    }
+    40%,
+    60% {
+      box-shadow:
+        -19px 15px,
+        0px 15px,
+        19px 15px;
+    }
+    66.67% {
+      box-shadow:
+        -19px 15px,
+        0px 15px,
+        60px 15px;
+    }
+    83.33% {
+      box-shadow:
+        -19px 15px,
+        60px 15px,
+        60px 15px;
+    }
+    100% {
+      box-shadow:
+        60px 15px,
+        60px 15px,
+        60px 15px;
+    }
+  }
+</style>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="light" />
+    <meta name="description" content="Меню Social Coffee" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta
+      name="theme-color"
+      content="#144433"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#000000"
+      media="(prefers-color-scheme: dark)"
+    />
+    <title>Boho</title>
+  </head>
+  <body>
+    <main>
+      <HeaderSection
+        categories={hideCategories ? undefined : activeMenu.subcategories}
+        menuOptions={menus}
+        hideMenus={hideMenus}
+        isLight={isLight}
+      />
+      <slot />
+    </main>
+
+    <script is:inline>
+      // Register the service worker
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((reg) => console.log("service worker registered", reg))
+          .catch((err) => console.log("service worker not registered", err));
+      }
+    </script>
+  </body>
+</html>

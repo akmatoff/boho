@@ -1,0 +1,32 @@
+---
+import RootLayout from "../layouts/RootLayout.astro";
+import MenuComponent from "../components/Menu.astro";
+import getCategories from "../api/getCategories";
+import { CategoryType, type Category } from "../types";
+
+const searchParams = Astro.url.searchParams;
+
+const language = searchParams.get("lang") || "ru";
+
+let categories: Category[] = [];
+
+try {
+  categories = await getCategories(language);
+} catch (error) {
+  console.error("Не удалось загрузить категории:", error);
+  categories = [];
+}
+
+const { menu } = Astro.params;
+
+const menus = categories.filter(
+  (category) => category.category_type === CategoryType.MENU
+);
+
+const activeMenu =
+  categories.find((category) => category.slug === menu) || menus?.[0];
+---
+
+<RootLayout categories={categories} hideMenus isLight>
+  <MenuComponent categories={activeMenu.subcategories} />
+</RootLayout>

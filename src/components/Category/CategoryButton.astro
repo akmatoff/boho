@@ -1,0 +1,34 @@
+---
+import classNames from "classnames";
+
+interface Props {
+  link: string;
+  className?: string;
+}
+
+const { link, className } = Astro.props;
+---
+
+<a
+  href={link}
+  class={classNames(
+    "inline-flex items-center text-center text-primary px-4 outline-none focus:outline-none bg-transparent text-[18px] md:text-[26px] whitespace-nowrap hover:opacity-80 duration-300",
+    className
+  )}
+>
+  <slot />
+</a>
+
+<script is:inline>
+  function scrollToHashElement() {
+    if (window.location.hash) {
+      const el = document.querySelector(window.location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }
+
+  window.addEventListener("load", scrollToHashElement);
+  window.addEventListener("hashchange", scrollToHashElement);
+</script>

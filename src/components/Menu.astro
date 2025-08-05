@@ -1,0 +1,22 @@
+---
+import type { Category as CategoryType } from "../types";
+import Category from "./Category/Category.astro";
+
+interface Props {
+  categories: CategoryType[];
+}
+
+const { categories } = Astro.props;
+---
+
+<style>
+  .category-background {
+    background-image: url("/public/background-image.png");
+  }
+</style>
+
+<div class="min-h-screen category-background overflow-x-hidden">
+  <div class="xl:mx-[7%]">
+    {categories.map((category) => <Category category={category} />)}
+  </div>
+</div>
