@@ -6,8 +6,8 @@ import type { Category } from "../types";
 import classNames from "classnames";
 import CategoryButton from "./Category/CategoryButton.astro";
 import BurgerMenu from "./BurgerMenu";
-import Logo from "../../public/boho-logo.png";
-import LogoSecondary from "../../public/boho-logo-secondary.png";
+import Logo from "../../public/boho-logo.svg";
+import LogoSecondary from "../../public/boho-logo-secondary.svg";
 
 export const prerender = true;
 
@@ -47,7 +47,8 @@ const { menu } = Astro.params;
 
   <div
     class={classNames(
-      "background bg-cover min-h-screen flex flex-col justify-center space-y-12 overflow-x-hidden"
+      "bg-cover min-h-screen flex flex-col lg:flex-row justify-center lg:items-center space-y-12 lg:space-x-14 lg:space-y-0 overflow-x-hidden",
+      isLight ? "background-light" : "background"
     )}
   >
     <div class="flex flex-col items-center justify-center space-y-20 h-full">
@@ -55,7 +56,6 @@ const { menu } = Astro.params;
         <Image
           src={isLight ? LogoSecondary : Logo}
           alt="logo"
-          class="scale-75"
           fetchpriority="high"
         />
       </div>
@@ -76,14 +76,14 @@ const { menu } = Astro.params;
       }
     </div>
 
-    <div class="flex lg:justify-center px-4 lg:px-0 w-full">
+    <div class="flex lg:justify-center px-4 lg:px-0 w-full lg:w-auto">
       <div class="flex flex-col items-center p-4 w-full">
         {
           categories?.map((category) => (
             <div class="break-inside-avoid mb-4">
               <CategoryButton
                 link={`#category-${category.id}`}
-                className={`${isLight ? "text-primary" : "text-foreground"} text-[20px] lg:px-4 lg:py-1 lg:text-[32px] uppercase whitespace-break-spaces`}
+                className={`${isLight ? "text-primary" : "text-foreground"} text-[20px] lg:px-4 lg:py-1 lg:text-[24px] uppercase whitespace-break-spaces`}
               >
                 {category.name}
               </CategoryButton>

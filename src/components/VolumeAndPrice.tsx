@@ -15,16 +15,8 @@ export default function VolumeAndPrice({
   boldPrice = false,
 }: Props) {
   return (
-    <p className="flex items-center space-x-2">
+    <p className="flex items-center space-x-4">
       {volume && <span className="text-[16px] md:text-[25px]">{volume}</span>}
-      {volume && (
-        <span
-          className={classNames(
-            "block bg-category w-[6px] h-[6px] md:w-2 md:h-2 rounded-full",
-            isBar && "bg-categorySecondary"
-          )}
-        />
-      )}
       <span
         className={classNames(
           boldPrice ? "font-semibold" : "",

@@ -26,16 +26,11 @@ export default function TwoInARowMenuItem({
       <img
         src={forceHttps(item.image) || item.image}
         alt={item.name}
-        className="h-[280px] md:h-[380px] lg:h-[420px] w-auto object-contain scale-[104%]"
+        className="h-[280px] md:h-[380px] lg:h-[420px] w-auto object-contain scale-[108%]"
       />
-      <h2 className="mt-4 text-[20px] md:text-[28px] font-bold">{item.name}</h2>
-
-      <div
-        className={classNames(
-          "bg-category rounded-lg h-[1px] w-[60%] my-1",
-          isBar && "bg-categorySecondary"
-        )}
-      ></div>
+      <h2 className="mt-4 text-[20px] md:text-[28px] font-semibold uppercase text-center">
+        {item.name}
+      </h2>
 
       <p className="text-[9px] md:text-[14px] text-center">
         {item.description}

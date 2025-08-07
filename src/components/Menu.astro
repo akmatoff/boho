@@ -9,13 +9,7 @@ interface Props {
 const { categories } = Astro.props;
 ---
 
-<style>
-  .category-background {
-    background-image: url("/public/background-image.png");
-  }
-</style>
-
-<div class="min-h-screen category-background overflow-x-hidden">
+<div class="min-h-screen bg-background overflow-x-hidden">
   <div class="xl:mx-[7%]">
     {categories.map((category) => <Category category={category} />)}
   </div>

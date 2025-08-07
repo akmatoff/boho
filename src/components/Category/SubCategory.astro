@@ -18,8 +18,10 @@ const { menu } = Astro.params;
 const hasSubcategories = category.subcategories.length > 0;
 ---
 
-<div class="space-y-16">
-  <h2 class="text-[16px] md:text-[30px] font-semibold">{category.name}</h2>
+<div class="space-y-12">
+  <h2 class="text-[16px] md:text-[30px] font-normal text-center uppercase">
+    {category.name}
+  </h2>
 
   {
     hasSubcategories && (

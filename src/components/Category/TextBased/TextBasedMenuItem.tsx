@@ -12,7 +12,9 @@ export default function TextBasedMenuItem({ item, menu = "" }: Props) {
   return (
     <article className="flex items-start justify-between space-x-4 text-[18px] md:text-[25px]">
       <div>
-        <p className="text-[16px] md:text-[25px]">{item.name}</p>
+        <p className="text-[16px] md:text-[25px] uppercase font-semibold">
+          {item.name}
+        </p>
         <p className="text-muted text-[12px] md:text-[18px]">
           {item.description}
         </p>
@@ -20,6 +22,7 @@ export default function TextBasedMenuItem({ item, menu = "" }: Props) {
       <VolumeAndPrice
         volume={item.volume ?? item.weight}
         price={item.price}
+        boldPrice
         isBar={isBar}
       />
     </article>

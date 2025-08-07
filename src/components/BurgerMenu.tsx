@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Category } from "../types";
 import classNames from "classnames";
-import HamburgerIcon from "../../public/hamburger.svg";
-import CloseIcon from "../../public/close.svg";
 
 interface Props {
   menuOptions: Category[];
@@ -91,7 +89,7 @@ export default function BurgerMenu({ menuOptions }: Props) {
         } transition-transform duration-300 ease-in-out shadow-lg`}
       >
         <h1
-          className="px-6 pt-6 text-primary font-extralight cursor-pointer"
+          className="px-6 pt-6 text-foreground font-extralight cursor-pointer"
           onClick={() => (window.location.href = "/")}
         >
           Меню
@@ -101,7 +99,7 @@ export default function BurgerMenu({ menuOptions }: Props) {
             <a
               key={option.id}
               href={`/${option.slug}?lang=${lang}`}
-              className="inline-flex items-center text-white text-2xl font-semibold hover:text-primary duration-300"
+              className="inline-flex items-center text-white text-2xl font-semibold hover:opacity-70 duration-300"
             >
               {option.name}
             </a>
@@ -110,13 +108,11 @@ export default function BurgerMenu({ menuOptions }: Props) {
 
         <div className="flex flex-col items-center space-y-10">
           <img
-            src="social-coffee-logo.png"
+            src="boho-logo.svg"
             alt="logo"
             className="mt-20 scale-75 md:scale-90 mx-auto cursor-pointer"
             onClick={() => (window.location.href = "/")}
           />
-
-          <img src="social-coffee-logo-text.png" alt="logo text" />
         </div>
       </div>
     </>

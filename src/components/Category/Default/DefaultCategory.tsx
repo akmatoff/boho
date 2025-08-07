@@ -37,7 +37,7 @@ export default function DefaultCategory({ category, lang }: Props) {
   return (
     <div className="min-h-screen">
       {isLoading && <Loader />}
-      <div className="md:grid md:grid-cols-2 py-8 min-h-screen" id="items-list">
+      <div className="py-8 min-h-screen" id="items-list">
         {!isLoading &&
           menuItems.map((item, index) => (
             <MenuItemComponent

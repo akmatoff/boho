@@ -39,7 +39,7 @@ export default function TextBasedCategory({
   }, []);
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-4">
       {isLoading && <Loader />}
       {!isLoading &&
         menuItems.map((item) => (

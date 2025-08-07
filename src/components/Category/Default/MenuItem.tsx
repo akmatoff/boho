@@ -31,14 +31,13 @@ export default function MenuItemComponent({ menuItem, length, index }: Props) {
         </figure>
 
         <div className="self-center flex flex-col items-center flex-[1_1_40%] md:flex-[1_1_50%]">
-          <h2 className="font-semibold text-[16px] md:text-[28px] text-center">
+          <h2 className="inline-block px-4 py-1 border border-primary font-semibold text-[16px] md:text-[28px] text-center uppercase">
             {menuItem.name}
           </h2>
           <p className="text-muted text-[14px] md:text-[20px] text-center lg:px-20">
             {menuItem.description}
           </p>
 
-          <div className="bg-category rounded-lg h-[1px] my-2 min-w-[200px] max-w-[206px]"></div>
           <p className="text-[14px] md:text-[25px] font-semibold">{price}</p>
         </div>
       </article>

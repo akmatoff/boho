@@ -4,7 +4,7 @@ import HeaderSection from "../components/HeaderSection.astro";
 
 const primary = "#C68440";
 const secondary = "#C68440";
-const background = "#F5F5F5";
+const background = "#FFECDA";
 const foreground = "#ffffff";
 const category = "#FF6868";
 const muted = "#363434";
@@ -76,17 +76,18 @@ const activeMenu =
     }
   }
 
-  .background-wrapper {
-    background-image: url("/public/background-image.png");
-    background-size: 105%;
-    background-repeat: repeat-y;
-  }
-
   .background {
     background-image: url("/public/hero-background.png");
     background-repeat: no-repeat;
     background-position: center;
   }
+
+  .background-light {
+    background-image: url("/public/hero-background.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   .loader {
     width: 15px;
     aspect-ratio: 1;
@@ -173,12 +174,12 @@ const activeMenu =
 
     <script is:inline>
       // Register the service worker
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then((reg) => console.log("service worker registered", reg))
-          .catch((err) => console.log("service worker not registered", err));
-      }
+      // if ("serviceWorker" in navigator) {
+      //   navigator.serviceWorker
+      //     .register("/sw.js")
+      //     .then((reg) => console.log("service worker registered", reg))
+      //     .catch((err) => console.log("service worker not registered", err));
+      // }
     </script>
   </body>
 </html>

@@ -38,7 +38,7 @@ export default function TwoInARow({ category, lang = "ru", menu }: Props) {
   const lastIndex = menuItems.length - 1;
 
   return (
-    <div className="grid grid-cols-2 my-8 gap-12 place-content-center">
+    <div className="grid grid-cols-2 gap-y-10 gap-x-4 place-content-center">
       {isLoading && <Loader />}
       {!isLoading &&
         menuItems.map((item, index) => {
