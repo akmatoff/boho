@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build
 
-FROM node:22-alpine AS runtime
+FROM node:22-slim AS runtime
 
 WORKDIR /app
 
