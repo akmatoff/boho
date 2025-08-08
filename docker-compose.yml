@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: boho-menu
     build: .
     ports:
       - "3000:3000"
