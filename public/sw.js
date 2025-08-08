@@ -1,37 +1,37 @@
-const CACHE_NAME = "social-coffee-v3";
-const API_CACHE_NAME = "api-cache-v3";
+const CACHE_NAME = "boho-v1";
+const API_CACHE_NAME = "api-cache-v1";
 
 const urlsToCache = [
   "/",
   "/menyu",
   "/bar",
-  "/detskoe-menyu",
   "/menyu?lang=ru",
   "/menyu?lang=ky",
   "/menyu?lang=en",
+  "/kitchen?lang=ru",
+  "/kitchen?lang=ky",
+  "/kitchen?lang=en",
+  "/menu?lang=ru",
+  "/menu?lang=ky",
+  "/menu?lang=en",
   "/?lang=ru",
   "/?lang=ky",
   "/?lang=en",
   "/bar?lang=ru",
   "/bar?lang=ky",
   "/bar?lang=en",
-  "/detskoe-menyu?lang=ru",
   "/detskoe-menyu?lang=ky",
   "/detskoe-menyu?lang=en",
   "/background-image.png",
   "/favicon.ico",
   "/hero-background.png",
-  "/social-coffee-logo-text.png",
-  "/social-coffee-logo.png",
-  "/social-coffee-logo.svg",
+  "/hero-background-light.png",
+  "/hero-background.svg",
+  "/boho-logo.png",
+  "/boho-logo-secondary.svg",
   "/close.svg",
   "/hamburger.svg",
-  "https://db.onlinewebfonts.com/t/06b73c421b7c269c7a0cb40df0daba21.eot",
-  "https://db.onlinewebfonts.com/t/06b73c421b7c269c7a0cb40df0daba21.eot?#iefix",
-  "https://db.onlinewebfonts.com/t/06b73c421b7c269c7a0cb40df0daba21.woff2",
-  "https://db.onlinewebfonts.com/t/06b73c421b7c269c7a0cb40df0daba21.woff",
-  "https://db.onlinewebfonts.com/t/06b73c421b7c269c7a0cb40df0daba21.ttf",
-  "https://db.onlinewebfonts.com/t/06b73c421b7c269c7a0cb40df0daba21.svg#FuturaDemiC",
+  "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap",
 ];
 
 // Install: precache known shell assets

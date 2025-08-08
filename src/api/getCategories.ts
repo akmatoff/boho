@@ -19,6 +19,7 @@ export default async function getCategories(language?: string) {
     return res.data.results;
   } catch (e) {
     console.log("Не удалось загрузить категории", e);
+
     throw e;
   }
 }

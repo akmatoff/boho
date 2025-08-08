@@ -28,5 +28,5 @@ const activeMenu =
 ---
 
 <RootLayout categories={categories} hideMenus isLight>
-  <MenuComponent categories={activeMenu.subcategories} />
+  {activeMenu && <MenuComponent categories={activeMenu.subcategories} />}
 </RootLayout>
