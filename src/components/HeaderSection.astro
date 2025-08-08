@@ -95,6 +95,6 @@ const { menu } = Astro.params;
   </div>
 </header>
 
-<BurgerMenu menuOptions={menuOptions} client:only />
+<BurgerMenu menuOptions={menuOptions} isLight={isLight} client:only />
 
 {categories && <CategoryCarousel categories={categories} />}

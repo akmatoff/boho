@@ -1,5 +1,5 @@
-const CACHE_NAME = "boho-v1";
-const API_CACHE_NAME = "api-cache-v1";
+const CACHE_NAME = "boho-v2";
+const API_CACHE_NAME = "api-cache-v2";
 
 const urlsToCache = [
   "/",
@@ -8,9 +8,9 @@ const urlsToCache = [
   "/menyu?lang=ru",
   "/menyu?lang=ky",
   "/menyu?lang=en",
-  "/kitchen?lang=ru",
-  "/kitchen?lang=ky",
-  "/kitchen?lang=en",
+  "/kuhnya?lang=ru",
+  "/kuhnnya?lang=ky",
+  "/kuhnya?lang=en",
   "/menu?lang=ru",
   "/menu?lang=ky",
   "/menu?lang=en",
@@ -20,8 +20,6 @@ const urlsToCache = [
   "/bar?lang=ru",
   "/bar?lang=ky",
   "/bar?lang=en",
-  "/detskoe-menyu?lang=ky",
-  "/detskoe-menyu?lang=en",
   "/background-image.png",
   "/favicon.ico",
   "/hero-background.png",

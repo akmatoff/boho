@@ -4,8 +4,9 @@ import classNames from "classnames";
 
 interface Props {
   menuOptions: Category[];
+  isLight?: boolean;
 }
-export default function BurgerMenu({ menuOptions }: Props) {
+export default function BurgerMenu({ menuOptions, isLight = false }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOutsideHeader, setIsOutsideHeader] = useState(false);
 
@@ -41,9 +42,8 @@ export default function BurgerMenu({ menuOptions }: Props) {
         onClick={() => setIsOpen(!isOpen)}
         className={classNames(
           "p-2 z-40 fixed top-0 focus:outline-none duration-300",
-          isOutsideHeader
-            ? "text-secondary top-24 right-4"
-            : "text-secondary left-0 top-2"
+          isOutsideHeader ? "top-24 right-4" : "left-0 top-2",
+          isLight ? "text-primary" : "text-foreground"
         )}
         aria-label="Toggle Menu"
       >
