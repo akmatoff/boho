@@ -1,5 +1,5 @@
 services:
-  app:
+  boho_menu:
     container_name: boho-menu
     build: .
     ports:
