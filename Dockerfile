@@ -22,6 +22,6 @@ COPY --from=base /app/dist ./dist
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=base /app/package*.json ./
 
-EXPOSE 3000
+EXPOSE 4200
 
 CMD ["node", "./dist/server/entry.mjs"]
