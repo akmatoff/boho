@@ -71,19 +71,22 @@ const { menu } = Astro.params;
                 {option.name}
               </MenuButton>
             ))}
+            <MenuButton isActive={menu === "rules"} link="/rules#rules">
+              Перечень штрафов
+            </MenuButton>
           </div>
         )
       }
     </div>
 
     <div class="flex lg:justify-center px-4 lg:px-0 w-full lg:w-auto">
-      <div class="flex flex-col items-center p-4 w-full">
+      <div class="p-2 w-full columns-2">
         {
           categories?.map((category) => (
             <div class="break-inside-avoid mb-4">
               <CategoryButton
                 link={`#category-${category.id}`}
-                className={`${isLight ? "text-primary" : "text-foreground"} text-[20px] lg:px-4 lg:py-1 lg:text-[24px] uppercase whitespace-break-spaces`}
+                className={`${isLight ? "text-primary" : "text-foreground"} text-start text-[20px] lg:px-4 lg:py-1 lg:text-[24px] uppercase whitespace-break-spaces`}
               >
                 {category.name}
               </CategoryButton>

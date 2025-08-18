@@ -104,6 +104,13 @@ export default function BurgerMenu({ menuOptions, isLight = false }: Props) {
               {option.name}
             </a>
           ))}
+          <a
+            key="rules"
+            href={`/rules?lang=${lang}#rules`}
+            className="inline-flex items-center text-white text-2xl font-semibold hover:opacity-70 duration-300"
+          >
+            Перечень штрафов
+          </a>
         </nav>
 
         <div className="flex flex-col items-center space-y-10">

@@ -1,0 +1,127 @@
+---
+import getCategories from "../api/getCategories";
+import RootLayout from "../layouts/RootLayout.astro";
+import type { Category } from "../types";
+
+const rules = [
+  {
+    label: "Разбитая рюмка (за единицу)",
+    fee: 350,
+  },
+  {
+    label: "Разбитое блюдце(за единицу)",
+    fee: 300,
+  },
+  {
+    label: "Разбитая чашка(за единицу)",
+    fee: 500,
+  },
+  {
+    label: "Разбитая барная стеклянная посуда любая (за единицу)",
+    fee: 800,
+  },
+  {
+    label: "Разбитая тарелка подстановочная (за единицу)",
+    fee: 1000,
+  },
+  {
+    label: "Разбитая тарелка 'Ракушка'(за единицу)",
+    fee: 3000,
+  },
+  {
+    label: "Разбитая тарелка для салатов,закусок,суши,гарниров (за единицу)",
+    fee: 1000,
+  },
+  {
+    label: "Разбитая соусница (за единицу)",
+    fee: 500,
+  },
+  {
+    label: "Повреждение минажницы (за единицу)",
+    fee: 1000,
+  },
+  {
+    label: "Повреждение пледа (за единицу)",
+    fee: 1000,
+  },
+  {
+    label:
+      "Физиологические загрязнения (рвота и т.п.) в зависимости от степени ",
+    fee: "от 2000",
+  },
+  {
+    label: "Разбитая чаша кальяна (за единицу)",
+    fee: "2000",
+  },
+  {
+    label: "Разбитая колба кальянного аппарата (за единицу)",
+    fee: "4000",
+  },
+  {
+    label: "Полное повреждение кальянного аппарата (за единицу)",
+    fee: "20000",
+  },
+  {
+    label: "Курение в зале",
+    fee: "3000",
+  },
+  {
+    label: "Самовольное переключение музыки без ведома администрации ",
+    fee: "3000",
+  },
+  {
+    label: "Распитие принесённых с собой напитков (изъятие и штраф)",
+    fee: "3000",
+  },
+  {
+    label: "Употребление принесённой с собой еды",
+    fee: "3000",
+  },
+  {
+    label:
+      "Прожег или порча  мебели заведения  (в зависимости от степени повреждения)",
+    fee: "от 10000",
+  },
+  {
+    label: "Повреждение телевизора ",
+    fee: "40000",
+  },
+];
+
+const language = Astro.url.searchParams.get("lang") || "ru";
+
+let categories: Category[] = [];
+
+try {
+  categories = await getCategories(language);
+} catch (error) {
+  console.error("Не удалось загрузить категории:", error);
+  categories = [];
+}
+---
+
+<RootLayout categories={categories} hideCategories>
+  <section class="px-4 py-12 bg-background" id="rules">
+    <h1 class="text-center text-xl font-bold">
+      ПЕРЕЧЕНЬ ШТРАФОВ ЗА ПОРЧУ ИМУЩЕСТВА И НАРУШЕНИЕ ПРАВИЛ
+    </h1>
+
+    <div class="space-y-6 mt-6">
+      {
+        rules.map((rule) => (
+          <div class="flex justify-between border-b border-[#e7cabc] pb-4 last:border-b-0">
+            <p class="text-lg"}>{rule.label}</p>
+            <p class="font-bold">{rule.fee}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-8">
+        <h1 class="font-bold text-lg text-center">Примечание</h1>
+
+        <p class="text-center mt-4">Администрация оставляет за собой право изменять условия оферты и размеры штрафов без предварительного уведомления.</p>
+        <p class="text-center mt-4">Пребывая на территории заведения, посетитель автоматически соглашается с вышеуказанными условиями.</p>
+    </div>
+  </section>
+</RootLayout>
