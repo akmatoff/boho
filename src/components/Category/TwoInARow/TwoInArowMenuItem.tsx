@@ -19,20 +19,20 @@ export default function TwoInARowMenuItem({
   return (
     <article
       className={classNames(
-        "flex flex-col items-center justify-end",
+        "flex flex-col items-center",
         shouldBeCentered && "col-span-2 justify-self-center"
       )}
     >
       <img
         src={forceHttps(item.image) || item.image}
         alt={item.name}
-        className="h-[280px] md:h-[380px] lg:h-[420px] w-auto object-contain scale-[108%]"
+        className="h-[200px] md:h-[380px] lg:h-[430px] w-auto object-contain"
       />
-      <h2 className="mt-4 text-[20px] md:text-[28px] font-semibold uppercase text-center">
+      <h2 className="mt-4 text-[20px] md:text-[28px] border border-primary px-5 py-1 font-semibold uppercase text-center">
         {item.name}
       </h2>
 
-      <p className="text-[9px] md:text-[14px] text-center">
+      <p className="text-[9px] md:text-[14px] text-center mt-3">
         {item.description}
       </p>
 

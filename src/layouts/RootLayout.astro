@@ -14,12 +14,21 @@ interface Props {
   categories: Category[];
   hideCategories?: boolean;
   hideMenus?: boolean;
+  hideLogo?: boolean;
   isLight?: boolean;
+  additionalText?: string;
 }
 
 const { menu } = Astro.params;
 
-const { categories, hideCategories, hideMenus, isLight } = Astro.props;
+const {
+  categories,
+  hideCategories,
+  hideMenus,
+  hideLogo,
+  isLight,
+  additionalText,
+} = Astro.props;
 
 const menus = categories.filter(
   (category) => category.category_type === CategoryType.MENU
@@ -169,7 +178,9 @@ const activeMenu =
           : (activeMenu?.subcategories ?? [])}
         menuOptions={menus}
         hideMenus={hideMenus}
+        hideLogo={hideLogo}
         isLight={isLight}
+        additionalText={additionalText}
       />
       <slot />
     </main>

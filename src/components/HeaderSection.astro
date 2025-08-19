@@ -17,10 +17,19 @@ interface Props {
   categories?: Category[];
   menuOptions: Category[];
   hideMenus?: boolean;
+  hideLogo?: boolean;
   isLight?: boolean;
+  additionalText?: string;
 }
 
-const { categories, menuOptions, hideMenus, isLight = false } = Astro.props;
+const {
+  categories,
+  menuOptions,
+  hideMenus,
+  hideLogo = false,
+  isLight = false,
+  additionalText,
+} = Astro.props;
 const { menu } = Astro.params;
 ---
 
@@ -52,13 +61,17 @@ const { menu } = Astro.params;
     )}
   >
     <div class="flex flex-col items-center justify-center space-y-20 h-full">
-      <div class="flex flex-col items-center space-y-10">
-        <Image
-          src={isLight ? LogoSecondary : Logo}
-          alt="logo"
-          fetchpriority="high"
-        />
-      </div>
+      {
+        !hideLogo && (
+          <div class="flex flex-col items-center space-y-10">
+            <Image
+              src={isLight ? LogoSecondary : Logo}
+              alt="logo"
+              fetchpriority="high"
+            />
+          </div>
+        )
+      }
 
       {
         !hideMenus && (
@@ -95,6 +108,16 @@ const { menu } = Astro.params;
         }
       </div>
     </div>
+
+    {
+      additionalText && (
+        <p
+          class={`absolute bottom-4 right-4 font-bold uppercase ${isLight ? "text-primary" : "text-foreground"}`}
+        >
+          {additionalText}
+        </p>
+      )
+    }
   </div>
 </header>
 
